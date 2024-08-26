@@ -6,9 +6,10 @@ import {
   FaPlus,
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SideNavbar = () => {
-  const TaskList = useSelector((state)=> state.auth.TaskList)
+  const TaskList = useSelector((state) => state.auth.TaskList);
   return (
     <div className="w-64 h-full bg-green-50 p-4">
       {/* Profile Section */}
@@ -24,26 +25,38 @@ const SideNavbar = () => {
       {/* Navigation List */}
       <div className="mt-8">
         <ul className="space-y-2">
-          <li className="flex items-center p-2 bg-green-200 rounded-md">
-            <FaTasks className="mr-2" />
-            <span>All Tasks</span>
-          </li>
-          <li className="flex items-center p-2 bg-green-300 rounded-md">
-            <FaCalendarAlt className="mr-2" />
-            <span>Today</span>
-          </li>
-          <li className="flex items-center p-2 bg-green-200 rounded-md">
-            <FaStar className="mr-2" />
-            <span>Important</span>
-          </li>
-          <li className="flex items-center p-2 bg-green-200 rounded-md">
+          <Link to={"/allitems"}>
+            <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
+              <FaTasks className="mr-2" />
+              <span>All Tasks</span>
+            </li>
+          </Link>
+          <Link to={"/"}>
+            <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
+              <FaCalendarAlt className="mr-2" />
+              <span>Today</span>
+            </li>
+          </Link>
+          <Link to={"/important"}>
+            <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
+              <FaStar className="mr-2" />
+              <span>Important</span>
+            </li>
+          </Link>
+          <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
             <FaClipboardList className="mr-2" />
             <span>Planned</span>
           </li>
-          <li className="flex items-center p-2 bg-green-200 rounded-md">
+          <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
             <FaTasks className="mr-2" />
             <span>Assigned to me</span>
           </li>
+          <Link to={"/login"}>
+            <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
+              <FaTasks className="mr-2" />
+              <span>Login</span>
+            </li>
+          </Link>
         </ul>
       </div>
 

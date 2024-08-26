@@ -69,7 +69,7 @@ const Alltask = () => {
                   type="checkbox"
                   checked={task.completed}
                   onChange={(e) => handleCheckBoxChange(e, task.id)}
-                  className="form-checkbox h-3 w-3 sm:h-5 sm:w-5 text-green-600"
+                  className="form-checkbox h-3 w-3 sm:h-5 sm:w-5 accent-[#F0FDF4]"
                 />
                 {task.id === IdToEdit ? (
                   <input
@@ -130,7 +130,7 @@ const Alltask = () => {
       </div>
 
       <div className="w-full mt-4">
-        <p className="text-gray-600 font-semibold">Completed</p>
+        <p className="text-gray-600 font-semibold mb-3">Completed</p>
         {TaskList.map((task) =>
           task.completed ? (
             <div
@@ -143,7 +143,7 @@ const Alltask = () => {
                   checked={task.completed}
                   readOnly
                   onChange={(e) => handleCheckBoxChange(e, task.id)}
-                  className="form-checkbox h-5 w-5 text-green-600"
+                  className="form-checkbox h-5 w-5 accent-[#c1e0ca]"
                 />
                 <p className="text-gray-700">{task.content}</p>
               </div>

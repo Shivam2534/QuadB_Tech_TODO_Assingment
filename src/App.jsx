@@ -1,9 +1,8 @@
 import TopNavbar from "./component's/TopNAvbar/TopNavbar";
 import SideNavbar from "./component's/SideNavbar/SideNavbar.jsx";
-import AddTodo from "./component's/AddTodo/AddTodo";
-import Alltask from "./component's/AllTask/Alltask";
 import { useSelector, useDispatch } from "react-redux";
 import { UpdateTaskList } from "./Store/authSlice.js";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,15 +25,8 @@ function App() {
         >
           <SideNavbar />
         </div>
-        <div className=" border-red-500 w-full md:m-4">
-          <div className="border border-red-500 flex flex-col gap-5">
-            <div className="border border-red-500 h-40">
-              <AddTodo />
-            </div>
-            <div className="border border-red-500 h-screen">
-              <Alltask />
-            </div>
-          </div>
+        <div className="w-full md:m-4">
+          <Outlet />
         </div>
       </div>
     </div>

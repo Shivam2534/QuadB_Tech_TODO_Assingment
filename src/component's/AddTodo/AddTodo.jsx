@@ -23,6 +23,7 @@ const AddTodo = () => {
         type_of_work: checkboxvalue, // checked -> outdoor
       };
 
+      setInputValue("");
       dispatch(AddTask(newTask));
 
       console.log("Task Added successfully");
@@ -37,6 +38,7 @@ const AddTodo = () => {
         <input
           type="text"
           placeholder="Add A Task"
+          value={InputValue}
           onChange={(e) => setInputValue(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded-md focus:outline-none"
         />
