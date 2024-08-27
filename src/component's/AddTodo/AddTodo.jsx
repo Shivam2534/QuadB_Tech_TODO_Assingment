@@ -32,7 +32,7 @@ const AddTodo = () => {
   return (
     <form
       onSubmit={AddTodoToTheList}
-      className="flex flex-col items-center justify-between bg-green-50  p-2 md:p-4 rounded-md"
+      className="flex flex-col items-center justify-between bg-green-50 p-4 rounded-md"
     >
       <div className="flex-grow mx-4 w-full mt-4">
         <input
