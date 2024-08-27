@@ -162,7 +162,7 @@ const Alltask = () => {
                   {task.priority == "high" ? (
                     <div onClick={() => HandlePriorityOfTask(task.id)}>
                       <FaStar className=" text-yellow-300" />
-                    </div>
+                    </div> 
                   ) : (
                     <div
                       className=" h-4 w-4 sm:h-5 sm:w-5"

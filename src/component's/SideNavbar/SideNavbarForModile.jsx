@@ -14,6 +14,7 @@ import {
   FaClipboardList,
   FaPlus,
 } from "react-icons/fa";
+import Vector from "../../../public/Vector.png";
 import { BiLogOut } from "react-icons/bi";
 import { BiLogIn } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
@@ -45,7 +46,6 @@ export default function SideNavbarForModile({ toggleMenu }) {
   const dispatch = useDispatch();
 
   const LoggedInUserData = JSON.parse(localStorage.getItem("UserCradentials"));
-  console.log(LoggedInUserData);
   function DeleteUserSession() {
     localStorage.setItem("UserCradentials", null);
     dispatch(LogoutUser(false));
@@ -98,6 +98,15 @@ export default function SideNavbarForModile({ toggleMenu }) {
             </ListItemButton>
           </ListItem>
         )}
+
+        <ListItem key={2} disablePadding onClick={DeleteUserSession}>
+          <ListItemButton>
+            <ListItemIcon>
+              <img src={Vector} alt="" className="w-4 h-4" />
+            </ListItemIcon>
+            <ListItemText primary={"Dark mode"} />
+          </ListItemButton>
+        </ListItem>
 
         <div className="ml-5 mt-5 text-md text-[#757575] underline">
           Hey, {LoggedInUserData != null ? LoggedInUserData.Username : "Buddy"}
