@@ -41,8 +41,8 @@ function TopNavbar() {
 
   return (
     <div>
-      <div className="flex justify-between">
-        <div className="md:flex md:w-24 md:gap-8 md:justify-between md:items-center">
+      <div className="flex justify-between items-center">
+        <div className=" md:flex md:w-24 md:gap-8 md:justify-between md:items-center">
           <div
             className="hidden md:block dark:text-white"
             onClick={toggleSideMenuOFLargeScreen}
