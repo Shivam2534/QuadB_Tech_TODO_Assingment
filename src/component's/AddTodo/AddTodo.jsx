@@ -46,9 +46,12 @@ const AddTodo = () => {
 
       <div className="flex justify-between w-full mt-7">
         <div className="flex items-center space-x-2 md:space-x-4">
-          <FaBell className="text-xl text-gray-700 hidden sm:block" />
-          <FaSyncAlt className="text-xl text-gray-700" />
-          <FaCalendarAlt className="text-xl text-gray-700" />
+          <FaBell className="cursor-not-allowed text-xl text-gray-700 hidden sm:block" />
+          <FaCalendarAlt className=" cursor-not-allowed text-xl text-gray-700" />
+          <FaSyncAlt
+            className="text-xl text-gray-700 hover:text-gray-500"
+            onClick={() => setInputValue("")}
+          />
           <div className="flex items-center justify-between gap-1 mt-1">
             <input
               type="checkbox"

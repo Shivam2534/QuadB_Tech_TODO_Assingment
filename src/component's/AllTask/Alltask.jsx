@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { UpdateTaskList } from "../../Store/authSlice.js";
 import { FaStar } from "react-icons/fa";
 import star from "../../../public/star.png";
+import { Delete } from "@mui/icons-material";
 
 const Alltask = () => {
   const [IdToEdit, setIdToEdit] = useState(null);
@@ -45,6 +46,11 @@ const Alltask = () => {
       }
       return task;
     });
+    dispatch(UpdateTaskList(UpdatedTaskList));
+  }
+
+  function HandleDeleteRequest(id) {
+    const UpdatedTaskList = TaskList.filter((task) => task.id !== id);
     dispatch(UpdateTaskList(UpdatedTaskList));
   }
 
@@ -123,6 +129,10 @@ const Alltask = () => {
                     Edit
                   </button>
                 )}
+
+                <div onClick={() => HandleDeleteRequest(task.id)}>
+                  <Delete />
+                </div>
               </div>
             </div>
           ) : null
@@ -147,7 +157,7 @@ const Alltask = () => {
                 />
                 <p className="text-gray-700">{task.content}</p>
               </div>
-              <div>
+              <div className=" flex items-center gap-3">
                 <p className={`${IdToEdit != null ? "hidden" : "block"}`}>
                   {task.priority == "high" ? (
                     <div onClick={() => HandlePriorityOfTask(task.id)}>
@@ -162,6 +172,9 @@ const Alltask = () => {
                     </div>
                   )}
                 </p>
+                <div onClick={() => HandleDeleteRequest(task.id)}>
+                  <Delete />
+                </div>
               </div>
             </div>
           ) : null

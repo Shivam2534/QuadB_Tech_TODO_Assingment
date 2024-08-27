@@ -7,13 +7,51 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import {
+  FaTasks,
+  FaStar,
+  FaCalendarAlt,
+  FaClipboardList,
+  FaPlus,
+} from "react-icons/fa";
+import { BiLogOut } from "react-icons/bi";
+import { BiLogIn } from "react-icons/bi";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LogoutUser } from "../../Store/authSlice";
+
+const IconsList1 = [
+  { icon: <FaTasks /> },
+  { icon: <FaStar /> },
+  { icon: <FaCalendarAlt /> },
+  { icon: <FaClipboardList /> },
+  { icon: <FaPlus /> },
+];
+
+const IconsList2 = [{ icon: <BiLogOut /> }, { icon: <BiLogIn /> }];
+
+const NavigationList1 = [
+  { link: "/allitems" },
+  { link: "/" },
+  { link: "/important" },
+  { link: "/" },
+  { link: "/" },
+];
 
 export default function SideNavbarForModile({ toggleMenu }) {
   const [open, setOpen] = React.useState(false);
+  const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // Use useEffect to sync the `open` state with the `toggleMenu` prop
+  const LoggedInUserData = JSON.parse(localStorage.getItem("UserCradentials"));
+  console.log(LoggedInUserData);
+  function DeleteUserSession() {
+    localStorage.setItem("UserCradentials", null);
+    dispatch(LogoutUser(false));
+    navigate("/login");
+  }
+
   React.useEffect(() => {
     setOpen(toggleMenu);
   }, [toggleMenu]);
@@ -25,29 +63,45 @@ export default function SideNavbarForModile({ toggleMenu }) {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+        {[
+          "All task",
+          "Today's task",
+          "Important",
+          "Planned",
+          "Assigned to me",
+        ].map((text, index) => (
+          <Link to={NavigationList1[index].link} key={index}>
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>{IconsList1[index].icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {!isUserLoggedIn && (
+          <ListItem key={1} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemIcon>{IconsList2[0].icon}</ListItemIcon>
+              <ListItemText primary={"Login"} />
             </ListItemButton>
           </ListItem>
-        ))}
+        )}
+        {isUserLoggedIn && (
+          <ListItem key={2} disablePadding onClick={DeleteUserSession}>
+            <ListItemButton>
+              <ListItemIcon>{IconsList2[1].icon}</ListItemIcon>
+              <ListItemText primary={"Logout"} />
+            </ListItemButton>
+          </ListItem>
+        )}
+
+        <div className="ml-5 mt-5 text-md text-[#757575] underline">
+          Hey, {LoggedInUserData != null ? LoggedInUserData.Username : "Buddy"}
+        </div>
       </List>
     </Box>
   );

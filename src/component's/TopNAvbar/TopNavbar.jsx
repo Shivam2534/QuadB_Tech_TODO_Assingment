@@ -42,10 +42,10 @@ function TopNavbar() {
           </div>
         </div>
         <div className=" hidden md:flex md:gap-5 md:items-center">
-          <div>
+          <div className="md:cursor-not-allowed">
             <SearchIcon />
           </div>
-          <div>
+          <div className="md:cursor-not-allowed">
             <img src={mode} alt="" />
           </div>
           <div>

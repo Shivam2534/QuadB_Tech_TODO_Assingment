@@ -8,12 +8,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { LogoutUser } from "../../Store/authSlice";
+import { BiLogOut } from "react-icons/bi";
+import { BiLogIn } from "react-icons/bi";
 
 const SideNavbar = () => {
   const TaskList = useSelector((state) => state.auth.TaskList);
   const authStatus = useSelector((state) => state.auth.isUserLoggedIn); // False
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const LoggedInUserData = JSON.parse(localStorage.getItem("UserCradentials"));
 
   function DeleteUserSession() {
     localStorage.setItem("UserCradentials", null);
@@ -30,7 +33,9 @@ const SideNavbar = () => {
           alt="Profile"
           className="rounded-full w-20 h-20"
         />
-        <h2 className="text-center text-lg mt-2">Hey, Shivam</h2>
+        <h2 className="text-center text-lg mt-2">
+          Hey, {LoggedInUserData != null ? LoggedInUserData.Username : "Buddy"}
+        </h2>
       </div>
 
       {/* Navigation List */}
@@ -65,7 +70,7 @@ const SideNavbar = () => {
           {!authStatus && (
             <Link to={"/login"}>
               <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
-                <FaTasks className="mr-2" />
+                <BiLogIn className="mr-2" />
                 <span>Login</span>
               </li>
             </Link>
@@ -73,7 +78,7 @@ const SideNavbar = () => {
 
           {authStatus && (
             <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
-              <FaTasks className="mr-2" />
+              <BiLogOut className="mr-2" />
               <span onClick={DeleteUserSession}>Logout</span>
             </li>
           )}
