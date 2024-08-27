@@ -32,7 +32,7 @@ const AddTodo = () => {
   return (
     <form
       onSubmit={AddTodoToTheList}
-      className="flex flex-col items-center justify-between bg-green-50 p-4 rounded-md"
+      className=" dark:bg-[#2F3630] flex flex-col items-center justify-between bg-green-50 p-4 rounded-md"
     >
       <div className="flex-grow mx-4 w-full mt-4">
         <input
@@ -40,16 +40,16 @@ const AddTodo = () => {
           placeholder="Add A Task"
           value={InputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none"
+          className=" dark:bg-[#2F3630] dark:text-white w-full p-2 border border-gray-300 rounded-md focus:outline-none"
         />
       </div>
 
-      <div className="flex justify-between w-full mt-7">
+      <div className="dark:text-white flex justify-between w-full mt-7">
         <div className="flex items-center space-x-2 md:space-x-4">
-          <FaBell className="cursor-not-allowed text-xl text-gray-700 hidden sm:block" />
-          <FaCalendarAlt className=" cursor-not-allowed text-xl text-gray-700" />
+          <FaBell className=" dark:text-white cursor-not-allowed text-xl text-gray-700 hidden sm:block" />
+          <FaCalendarAlt className=" dark:text-white  cursor-not-allowed text-xl text-gray-700" />
           <FaSyncAlt
-            className="text-xl text-gray-700 hover:text-gray-500"
+            className=" dark:text-white text-xl text-gray-700 hover:text-gray-500"
             onClick={() => setInputValue("")}
           />
           <div className="flex items-center justify-between gap-1 mt-1">
@@ -57,16 +57,16 @@ const AddTodo = () => {
               type="checkbox"
               name="checkbox"
               id=""
-              className="size-4"
+              className="size-4 "
               onChange={handleCheck}
             />
-            <span className="text-green-700">outdoor</span>
+            <span className="text-green-700 dark:text-white">outdoor</span>
           </div>
         </div>
         <div>
           <button
             type="submit"
-            className="bg-green-200 text-green-700 px-4 py-2 rounded-md hover:bg-green-300"
+            className="dark:text-white dark:bg-[#347237] bg-green-200 text-green-700 px-4 py-2 rounded-md hover:bg-green-300"
           >
             ADD TASK
           </button>

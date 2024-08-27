@@ -7,8 +7,8 @@ function Alltems() {
   const TaskList = useSelector((state) => state.auth.TaskList);
 
   return (
-    <div className="flex flex-col p-4 border  bg-white shadow-lg rounded-md">
-      <h2 className="text-xl font-bold mb-4 text-green-400">
+    <div className="dark:bg-[#232323] flex flex-col p-4 border  bg-white shadow-lg rounded-md">
+      <h2 className=" text-xl font-bold mb-4 text-green-400">
         All Tasks To Do...
       </h2>
       {TaskList.length > 0 ? (
@@ -24,7 +24,7 @@ function Alltems() {
                 readOnly
                 className="cursor-not-allowed accent-[#baf0ca]"
               />
-              <p className={task.completed ? "text-gray-500" : "text-black"}>
+              <p className={task.completed ? "text-gray-500 dark:text-gray-300" : "text-black dark:text-white"}>
                 {task.content}
               </p>
             </div>

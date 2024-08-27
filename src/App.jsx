@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <div className="dark:bg-[#232222] min-h-screen sm:h-full border md:mx-10 flex flex-col">
+    <div className="dark:bg-[#232222] min-h-screen border-b-0 sm:h-full border md:mx-10 flex flex-col">
       <div className="border h-10 m-2">
         <TopNavbar />
       </div>
@@ -40,7 +40,7 @@ function App() {
         <div
           className={`${
             status == true ? "md:block" : "md:hidden"
-          } w-72 hidden md:block`}
+          } w-72 hidden md:block border p-1`}
         >
           <SideNavbar />
         </div>

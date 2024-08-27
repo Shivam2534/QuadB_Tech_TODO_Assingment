@@ -3,9 +3,11 @@ import SideNavbarForModile from "../SideNavbar/SideNavbarForModile";
 import { useDispatch, useSelector } from "react-redux";
 import { SetTogglingStatus } from "../../Store/authSlice.js";
 import logomark from "../../../public/logomark.png";
-import all from "../../../public/Vector.png";
-import mode from "../../../public/app-grid.jpg";
+// import all from "../../../public/Vector.png";
+// import mode from "../../../public/app-grid.jpg";
 import MenuIcon from "@mui/icons-material/Menu";
+import { DarkMode } from "@mui/icons-material";
+import { AddBoxRounded } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ToggleDarkMode } from "../../Store/authSlice.js";
 import { ToggleLightMode } from "../../Store/authSlice.js";
@@ -42,7 +44,7 @@ function TopNavbar() {
       <div className="flex justify-between">
         <div className="md:flex md:w-24 md:gap-8 md:justify-between md:items-center">
           <div
-            className="hidden md:block"
+            className="hidden md:block dark:text-white"
             onClick={toggleSideMenuOFLargeScreen}
           >
             <MenuIcon />
@@ -53,18 +55,20 @@ function TopNavbar() {
           </div>
         </div>
         <div className=" hidden md:flex md:gap-5 md:items-center">
-          <div className="md:cursor-not-allowed">
+          <div className="md:cursor-not-allowed dark:text-white">
             <SearchIcon />
           </div>
-          <div className="md:cursor-not-allowed">
-            <img src={mode} alt="" />
+          <div className="md:cursor-not-allowed  dark:text-white">
+            {/* <img src={mode} alt="" /> */}
+             <AddBoxRounded />
           </div>
 
-          <div onClick={ChangeMode}>
-            <img src={all} alt="" />
+          <div onClick={ChangeMode} className="dark:text-white">
+            {/* <img src={all} alt="" className="dark:text-white" /> */}
+             <DarkMode />
           </div>
         </div>
-        <div onClick={OpenMenuBar} className="md:hidden">
+        <div onClick={OpenMenuBar} className="md:hidden dark:text-white">
           <MenuIcon />
         </div>
       </div>

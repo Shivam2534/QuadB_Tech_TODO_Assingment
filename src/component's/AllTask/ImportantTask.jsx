@@ -10,7 +10,7 @@ function ImportantTask() {
   const highPriorityTasks = TaskList.filter((task) => task.priority === "high");
 
   return (
-    <div className="flex flex-col p-4 border border-red-400 bg-white shadow-lg rounded-md">
+    <div className="dark:bg-[#232323] flex flex-col p-4 border  bg-white shadow-lg rounded-md">
       <h2 className="text-xl font-bold mb-4 text-red-600">
         High Priority Tasks
       </h2>
@@ -27,7 +27,13 @@ function ImportantTask() {
                 readOnly
                 className="cursor-not-allowed accent-[#a7e6ba]"
               />
-              <p className={task.completed ? "text-gray-500" : "text-black"}>
+              <p
+                className={
+                  task.completed
+                    ? "text-gray-500 dark:text-gray-300"
+                    : "text-black dark:text-white"
+                }
+              >
                 {task.content}
               </p>
             </div>
