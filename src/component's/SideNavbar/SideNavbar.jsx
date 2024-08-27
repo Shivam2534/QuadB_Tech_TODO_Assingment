@@ -17,6 +17,16 @@ const SideNavbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const LoggedInUserData = JSON.parse(localStorage.getItem("UserCradentials"));
+  let done = 0;
+  let pending = 0;
+
+  TaskList.map((task) => {
+    if (task.completed) {
+      done = done + 1;
+    } else {
+      pending = pending + 1;
+    }
+  });
 
   function DeleteUserSession() {
     localStorage.setItem("UserCradentials", null);
@@ -77,17 +87,17 @@ const SideNavbar = () => {
             )}
 
             {authStatus && (
-              <li className="dark:text-white flex items-center p-2 bg-green-200 dark:bg-[#232323] hover:bg-green-300 rounded-md">
+              <li
+                onClick={DeleteUserSession}
+                className="dark:text-white flex items-center p-2 bg-green-200 dark:bg-[#232323] hover:bg-green-300 rounded-md"
+              >
                 <BiLogOut className="mr-2 " />
-                <span onClick={DeleteUserSession} className="">
-                  Logout
-                </span>
+                <span className="">Logout</span>
               </li>
             )}
           </ul>
         </div>
 
-        {/* Add List Button */}
         <div className="mt-8">
           <button className="flex items-center w-full p-2 bg-white text-green-700 border rounded-md hover:bg-green-100">
             <FaPlus className="mr-2" />
@@ -95,18 +105,16 @@ const SideNavbar = () => {
           </button>
         </div>
 
-        {/* Task Summary */}
         <div className="mt-8 bg-white p-4 rounded-md">
           <h3 className="text-lg mb-2">Today Tasks</h3>
           <div className="text-center">
             <div className="text-4xl mb-4">{TaskList.length}</div>
-            {/* Replace with a donut chart component */}
             <div className="w-20 h-20 mx-auto bg-green-300 rounded-full relative">
               <div className="w-10 h-10 bg-white rounded-full absolute top-5 left-5"></div>
             </div>
             <div className="mt-4">
-              <span className="block text-sm">Pending</span>
-              <span className="block text-sm">Done</span>
+              <span className="block text-sm">Pending- {pending}</span>
+              <span className="block text-sm">Done- {done}</span>
             </div>
           </div>
         </div>
