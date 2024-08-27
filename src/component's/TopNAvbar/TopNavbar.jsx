@@ -1,16 +1,19 @@
 import { useState } from "react";
 import SideNavbarForModile from "../SideNavbar/SideNavbarForModile";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SetTogglingStatus } from "../../Store/authSlice.js";
 import logomark from "../../../public/logomark.png";
 import all from "../../../public/Vector.png";
 import mode from "../../../public/app-grid.jpg";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { ToggleDarkMode } from "../../Store/authSlice.js";
+import { ToggleLightMode } from "../../Store/authSlice.js";
 
 function TopNavbar() {
   const [toggleMenu, settoggleMenu] = useState(false);
   const [toggleStatusOfsidemenu, settoggleStatusOfsidemenu] = useState(false);
+  const CurrThemeMode = useSelector((state) => state.auth.Mode);
   const dispatch = useDispatch();
 
   function OpenMenuBar() {
@@ -24,6 +27,14 @@ function TopNavbar() {
   function toggleSideMenuOFLargeScreen() {
     settoggleStatusOfsidemenu(!toggleStatusOfsidemenu);
     dispatch(SetTogglingStatus(toggleStatusOfsidemenu));
+  }
+
+  function ChangeMode() {
+    if (CurrThemeMode == "light") {
+      dispatch(ToggleDarkMode());
+    } else {
+      dispatch(ToggleLightMode());
+    }
   }
 
   return (
@@ -48,7 +59,8 @@ function TopNavbar() {
           <div className="md:cursor-not-allowed">
             <img src={mode} alt="" />
           </div>
-          <div>
+
+          <div onClick={ChangeMode}>
             <img src={all} alt="" />
           </div>
         </div>

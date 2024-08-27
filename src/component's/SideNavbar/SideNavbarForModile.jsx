@@ -61,7 +61,12 @@ export default function SideNavbarForModile({ toggleMenu }) {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      className="dark:bg-blacks"
+    >
       <List>
         {[
           "All task",

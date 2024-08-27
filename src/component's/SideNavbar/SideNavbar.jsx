@@ -25,7 +25,7 @@ const SideNavbar = () => {
   }
 
   return (
-    <div className="w-64 h-full bg-green-50 p-4">
+    <div className="w-64 h-full bg-green-50 p-4 border">
       {/* Profile Section */}
       <div className="flex flex-col items-center">
         <img

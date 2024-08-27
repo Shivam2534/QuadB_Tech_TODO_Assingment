@@ -33,6 +33,7 @@ const initialState = {
       type_of_work: "outdoor", // indoor
     },
   ],
+  Mode: "light",
 };
 
 const authSlice = createSlice({
@@ -56,6 +57,12 @@ const authSlice = createSlice({
       state.TaskList = action.payload;
       localStorage.setItem("TaskList", JSON.stringify(state.TaskList));
     },
+    ToggleDarkMode: (state, action) => {
+      state.Mode = "dark";
+    },
+    ToggleLightMode: (state, action) => {
+      state.Mode = "light";
+    },
   },
 });
 
@@ -65,5 +72,7 @@ export const {
   UpdateTaskList,
   isUserLoggedIn,
   LogoutUser,
+  ToggleDarkMode,
+  ToggleLightMode,
 } = authSlice.actions;
 export default authSlice.reducer;

@@ -3,8 +3,22 @@ import SideNavbar from "./component's/SideNavbar/SideNavbar.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { isUserLoggedIn, UpdateTaskList } from "./Store/authSlice.js";
 import { Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function App() {
+  // we are changing mode
+  const [Theme, setTheme] = useState("light");
+  const CurrTheme = useSelector((state) => state.auth.Mode);
+
+  useEffect(() => {
+    setTheme(CurrTheme);
+    document.querySelector("html").classList.remove("dark", "light");
+    document.querySelector("html").classList.add(Theme);
+  }, [CurrTheme, Theme]);
+
+  console.log(Theme);
+
+  // other stuff
   const dispatch = useDispatch();
   const status = useSelector((state) => state.auth.ToggleStatusOfSideMenuBar);
   const data = localStorage.getItem("TaskList");
@@ -17,18 +31,16 @@ function App() {
     dispatch(isUserLoggedIn(true));
   }
 
-  console.log(UserCrad);
-
   return (
-    <div className=" border border-red-400 min-h-screen md:h-full md:mx-10 flex flex-col">
-      <div className=" border border-red-500 h-10 m-2">
+    <div className="dark:bg-[#232222] min-h-screen sm:h-full border md:mx-10 flex flex-col">
+      <div className="border h-10 m-2">
         <TopNavbar />
       </div>
-      <div className="border border-red-500 h-screen m-2 flex gap-2">
+      <div className="min-h-screen sm:h-full m-2 flex gap-2">
         <div
           className={`${
             status == true ? "md:block" : "md:hidden"
-          } border border-red-500 w-72 hidden md:block`}
+          } w-72 hidden md:block`}
         >
           <SideNavbar />
         </div>

@@ -7,7 +7,7 @@ function Alltems() {
   const TaskList = useSelector((state) => state.auth.TaskList);
 
   return (
-    <div className="flex flex-col p-4 border border-red-400 bg-white shadow-lg rounded-md">
+    <div className="flex flex-col p-4 border  bg-white shadow-lg rounded-md">
       <h2 className="text-xl font-bold mb-4 text-green-400">
         All Tasks To Do...
       </h2>
