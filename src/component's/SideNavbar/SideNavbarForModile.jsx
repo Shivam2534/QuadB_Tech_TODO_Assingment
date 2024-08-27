@@ -20,6 +20,8 @@ import { BiLogIn } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../../Store/authSlice";
+import { ToggleDarkMode } from "../../Store/authSlice.js";
+import { ToggleLightMode } from "../../Store/authSlice.js";
 
 const IconsList1 = [
   { icon: <FaTasks /> },
@@ -59,6 +61,15 @@ export default function SideNavbarForModile({ toggleMenu }) {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+  const CurrThemeMode = useSelector((state) => state.auth.Mode);
+
+  function ChangeMode() {
+    if (CurrThemeMode == "light") {
+      dispatch(ToggleDarkMode());
+    } else {
+      dispatch(ToggleLightMode());
+    }
+  }
 
   const DrawerList = (
     <Box
@@ -104,7 +115,7 @@ export default function SideNavbarForModile({ toggleMenu }) {
           </ListItem>
         )}
 
-        <ListItem key={2} disablePadding onClick={DeleteUserSession}>
+        <ListItem key={2} disablePadding onClick={ChangeMode}>
           <ListItemButton>
             <ListItemIcon>
               <img src={Vector} alt="" className="w-4 h-4" />
