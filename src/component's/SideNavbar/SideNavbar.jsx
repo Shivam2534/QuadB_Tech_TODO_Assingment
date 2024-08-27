@@ -5,11 +5,22 @@ import {
   FaClipboardList,
   FaPlus,
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { LogoutUser } from "../../Store/authSlice";
 
 const SideNavbar = () => {
   const TaskList = useSelector((state) => state.auth.TaskList);
+  const authStatus = useSelector((state) => state.auth.isUserLoggedIn); // False
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function DeleteUserSession() {
+    localStorage.setItem("UserCradentials", null);
+    dispatch(LogoutUser(false));
+    navigate("/login");
+  }
+
   return (
     <div className="w-64 h-full bg-green-50 p-4">
       {/* Profile Section */}
@@ -51,12 +62,21 @@ const SideNavbar = () => {
             <FaTasks className="mr-2" />
             <span>Assigned to me</span>
           </li>
-          <Link to={"/login"}>
+          {!authStatus && (
+            <Link to={"/login"}>
+              <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
+                <FaTasks className="mr-2" />
+                <span>Login</span>
+              </li>
+            </Link>
+          )}
+
+          {authStatus && (
             <li className="flex items-center p-2 bg-green-200 hover:bg-green-300 rounded-md">
               <FaTasks className="mr-2" />
-              <span>Login</span>
+              <span onClick={DeleteUserSession}>Logout</span>
             </li>
-          </Link>
+          )}
         </ul>
       </div>
 

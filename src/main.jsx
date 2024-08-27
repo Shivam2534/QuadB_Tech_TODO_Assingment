@@ -9,8 +9,7 @@ import Today from "./component's/Today/Today.jsx";
 import ImportantTask from "./component's/AllTask/ImportantTask.jsx";
 import Alltems from "./component's/AllTask/AlItems.jsx";
 import Login from "./component's/Authentication/Login.jsx";
-
-
+import Protected from "./component's/Authentication/Protected.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,15 +17,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Today />,
+        element: (
+          <Protected authentication={true}>
+            <Today />
+          </Protected>
+        ),
       },
       {
         path: "/important",
-        element: <ImportantTask />,
+        element: (
+          <Protected authentication={true}>
+            <ImportantTask />
+          </Protected>
+        ),
       },
       {
         path: "/allitems",
-        element: <Alltems />,
+        element: (
+          <Protected authentication={true}>
+            <Alltems />
+          </Protected>
+        ),
       },
       {
         path: "/login",
@@ -35,6 +46,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>

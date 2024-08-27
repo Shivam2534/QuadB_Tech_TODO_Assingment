@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isUserLoggedIn: false,
   ToggleStatusOfSideMenuBar: true,
   TaskList: [
     {
@@ -38,6 +39,12 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    isUserLoggedIn: (state, action) => {
+      state.isUserLoggedIn = true;
+    },
+    LogoutUser: (state, action) => {
+      state.isUserLoggedIn = false;
+    },
     SetTogglingStatus: (state, action) => {
       state.ToggleStatusOfSideMenuBar = action.payload;
     },
@@ -52,5 +59,11 @@ const authSlice = createSlice({
   },
 });
 
-export const { SetTogglingStatus, AddTask, UpdateTaskList } = authSlice.actions;
+export const {
+  SetTogglingStatus,
+  AddTask,
+  UpdateTaskList,
+  isUserLoggedIn,
+  LogoutUser,
+} = authSlice.actions;
 export default authSlice.reducer;

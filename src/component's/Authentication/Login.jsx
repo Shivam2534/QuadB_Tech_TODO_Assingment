@@ -1,17 +1,30 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { isUserLoggedIn } from "../../Store/authSlice";
+import { useNavigate } from "react-router";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+
+    const UserCradentials = {
+      Username: username,
+      Password: password,
+    };
+
+    localStorage.setItem("UserCradentials", JSON.stringify(UserCradentials));
+    dispatch(isUserLoggedIn(true));
+
+    navigate("/");
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-full bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-red-500">
           Login
@@ -22,13 +35,13 @@ function Login() {
               className="block text-gray-700 font-semibold mb-2"
               htmlFor="email"
             >
-              Email
+              Username
             </label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setusername(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-500"
               required
             />
